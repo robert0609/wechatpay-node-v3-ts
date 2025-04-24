@@ -626,7 +626,7 @@ var Pay = /** @class */ (function (_super) {
                             throw new Error('缺少transaction_id或者out_trade_no');
                         }
                         authorization = this.init('GET', url);
-                        headers = this.getHeaders(authorization);
+                        headers = this.getHeaders(authorization, { 'Wechatpay-Serial': this.wxPayPublicId ? this.wxPayPublicId : null });
                         return [4 /*yield*/, this.httpService.get(url, headers)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -816,7 +816,7 @@ var Pay = /** @class */ (function (_super) {
                             throw new Error('缺少out_refund_no');
                         url = "https://api.mch.weixin.qq.com/v3/refund/domestic/refunds/" + out_refund_no;
                         authorization = this.init('GET', url);
-                        headers = this.getHeaders(authorization);
+                        headers = this.getHeaders(authorization, { 'Wechatpay-Serial': this.wxPayPublicId ? this.wxPayPublicId : null });
                         return [4 /*yield*/, this.httpService.get(url, headers)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }

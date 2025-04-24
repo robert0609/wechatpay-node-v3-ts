@@ -600,7 +600,7 @@ class Pay extends Base {
     }
 
     const authorization = this.init('GET', url);
-    const headers = this.getHeaders(authorization);
+    const headers = this.getHeaders(authorization, { 'Wechatpay-Serial' : this.wxPayPublicId ? this.wxPayPublicId : null });
     return await this.httpService.get(url, headers);
   }
   /**
@@ -728,7 +728,7 @@ class Pay extends Base {
     const url = `https://api.mch.weixin.qq.com/v3/refund/domestic/refunds/${out_refund_no}`;
 
     const authorization = this.init('GET', url);
-    const headers = this.getHeaders(authorization);
+    const headers = this.getHeaders(authorization, { 'Wechatpay-Serial' : this.wxPayPublicId ? this.wxPayPublicId : null });
     return await this.httpService.get(url, headers);
   }
   //#endregion 支付相关接口
